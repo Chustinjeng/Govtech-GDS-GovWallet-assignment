@@ -1,6 +1,6 @@
 # Govtech-GDS-GovWallet-assignment
 
-My name is Justin Cheng. My email is justcheng2000@gmail.com. This is the online assessment for the internship role "Tech - Software Engineer: GovSupply & GovWallet".
+My name is Justin Cheng. My email is justcheng2000@gmail.com. This is my submission for the online assessment for the internship role "Tech - Software Engineer: GovSupply & GovWallet".
 
 ## Assumptions and design considerations
 
