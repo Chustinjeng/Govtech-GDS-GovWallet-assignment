@@ -29,8 +29,8 @@ npm install
 4. Compile the typescript files 
 
 ```
-npx index.ts
-npx tests.ts
+npx tsc index.ts
+npx tsc tests.ts
 ```
 
 5. Run the test cases
