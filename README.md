@@ -12,26 +12,28 @@ For unit testing, I tried using testing frameworks like Cypress and Jest, but th
 
 ## Run the code
 
-1. Make sure to go to the working directory
+1. Clone the repository
+
+2. Make sure to go to the working directory
 
 ```
 cd gds-swe-supplyally-govwallet/Take-Home Assignment 59666bf04ff7483ba95edeb4a75f0b1c
 ```
 
-2. Store the node modules packages by running
+3. Store the node modules packages by running
 
 ```
 npm install
 ```
 
-3. Compile the typescript files 
+4. Compile the typescript files 
 
 ```
 npx index.ts
 npx tests.ts
 ```
 
-4. Run the test cases
+5. Run the test cases
 
 ```
 node tests.js
