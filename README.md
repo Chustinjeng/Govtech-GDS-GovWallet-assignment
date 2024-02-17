@@ -10,23 +10,23 @@ Although not explicitly mentioned in the question, I assume that each team can o
 
 For unit testing, I tried using testing frameworks like Cypress and Jest, but these frameworks are more suited for testing of frontend and backend logic, so I struggled to implement such frameworks. :disappointed: I tried to emulate testing frameworks by writing my own test cases in a typescript file `tests.js`.
 
-## Run the code
+## Steps to run the code
 
 1. Clone the repository
 
-2. Make sure to go to the working directory
+2. Make sure to go to the working directory. In your terminal, run
 
 ```
 cd gds-swe-supplyally-govwallet/Take-Home Assignment 59666bf04ff7483ba95edeb4a75f0b1c
 ```
 
-3. Store the node modules packages by running
+3. Store the node modules packages by running in your terminal
 
 ```
 npm install
 ```
 
-4. Compile the typescript files 
+4. Compile the typescript files
 
 ```
 npx tsc index.ts
