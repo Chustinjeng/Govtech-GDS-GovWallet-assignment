@@ -5,6 +5,8 @@ export interface Row {
     team_name: string;
 }
 
+const REDEMPTION_FILE_PATH = "redemption.csv";
+
 /**
  * A function to filter the mapping csv data based on staffID and store the data in an array.
  * @param results The array to store the filtered data in
@@ -59,7 +61,9 @@ export function findRelevantDataRedemption(filePath: any, teamName: String): boo
         }
         return false;
     } catch (error) {
-        console.log("Error reading file: ", error);
+        // file has not been created, which means the staff has not collected the gifts
+        console.log("File has not been created");
+        return false;
     }
 }
 
@@ -104,34 +108,39 @@ export function verify(row: Row | undefined): boolean {
         return false;
     }
 
-    const redemptionFilePath = "redemption.csv";
     const teamName = row.team_name;
-    const staffPassID = row.staff_pass_id;
-    const headers = ["staff_pass_id", "team_name", "redeemed_at"];
-    const csvHeader = headers.join(',') + '\n';
-    // check if there is a redemption file
-    // if does not exist, create a new file with headers "team_name" and "redeemed_at"
-    if (!fs.existsSync(redemptionFilePath)) {
-        fs.writeFileSync(redemptionFilePath, csvHeader);
-        // then we can add new redemption records in the file
-        const timeNow = Date.now().toString();
-        const csvRow = `${staffPassID}, ${teamName}, ${timeNow}\n`;
-        fs.appendFileSync(redemptionFilePath, csvRow);
-        return true;
-    }
 
-    // if there is a redemption file existing
     // check if the team_name has collected the gift
-    const isCollected: boolean | undefined = findRelevantDataRedemption(redemptionFilePath, teamName);
-    // if the team has collected the gift or the result is undefined, do not add anything to csv file and return false
+    const isCollected: boolean | undefined = findRelevantDataRedemption(REDEMPTION_FILE_PATH, teamName);
+    // if the team has collected the gift or the result is undefined, return false because team is inelligible 
     if (isCollected === undefined || isCollected) {
         return false;
     }
-    const timeNow = Date.now().toString();
-    const csvRow = `${staffPassID}, ${teamName}, ${timeNow}\n`;
-    fs.appendFileSync(redemptionFilePath, csvRow);
 
     return true;
+}
+
+
+/**
+ * Inserts the details of the staff who is elligible for collecting gifts into the redemption.csv file
+ * @param row The row of details of the staff
+ * @param isElligible The elligibility of the staff collecting gifts.
+ */
+export function insertInRedemptionFile(row: Row, isElligible: boolean): void {
+    if (isElligible) {
+        const teamName = row.team_name;
+        const staffPassID = row.staff_pass_id;
+        if (!fs.existsSync(REDEMPTION_FILE_PATH)) {
+            // if file does not exist, create a new file with headers
+            const headers = ["staff_pass_id", "team_name", "redeemed_at"];
+            const csvHeader = headers.join(',') + '\n';
+            fs.writeFileSync(REDEMPTION_FILE_PATH, csvHeader);
+            
+        }
+        const timeNow = Date.now().toString();
+        const csvRow = `${staffPassID}, ${teamName}, ${timeNow}\n`;
+        fs.appendFileSync(REDEMPTION_FILE_PATH, csvRow);
+    }
 }
 
 

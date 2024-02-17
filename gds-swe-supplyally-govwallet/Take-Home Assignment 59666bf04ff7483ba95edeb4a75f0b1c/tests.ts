@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Row, deleteRedemptionFile, isRedemptionFileExists, lookUp, verify } from ".";
+import { Row, deleteRedemptionFile, insertInRedemptionFile, isRedemptionFileExists, lookUp, verify } from ".";
 
 const REDEMPTION_PATH = "redemption.csv";
 const BOSS_ID_1 = "BOSS_T000000001P";
@@ -43,7 +43,9 @@ function test2(): boolean {
     if (row == undefined) {
         return false;
     }
-    return verify(row);
+    const res = verify(row);
+    insertInRedemptionFile(row, res);
+    return res;
 }
 
 /**
@@ -65,7 +67,9 @@ function test4(): boolean {
     if (row == undefined) {
         return false;
     }
-    return verify(row);
+    const res = verify(row);
+    insertInRedemptionFile(row, res);
+    return res;
 }
 
 /**
@@ -78,7 +82,9 @@ function test5(): boolean {
     if (row == undefined) {
         return false;
     }
-    return verify(row);
+    const res = verify(row);
+    insertInRedemptionFile(row, res);
+    return res;
 }
 
 /**
@@ -91,8 +97,8 @@ function test6(): boolean {
 }
 
 
-console.log("Result of test 1 is: expected true, actual ", test1());
-console.log("Result of test 2 is: expected true, actual ", test2());
+console.log("Result of test 1 is: expected true, actual", test1());
+console.log("Result of test 2 is: expected true, actual", test2());
 console.log("Result of test 3 is: expected true, actual", test3());
 console.log("Result of test 4 is: expected true, actual", test4());
 console.log("Result of test 5 is: expected false, actual", test5());
