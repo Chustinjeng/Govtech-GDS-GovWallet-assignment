@@ -69,7 +69,8 @@ export function findRelevantDataRedemption(filePath: any, teamName: String): boo
 
 
 /**
- * Function to look up the mapping files for the staffID
+ * Function 1:
+ * Perform look up of the representative's staff pass ID against the mapping file
  * @param staffID the staffID to be found
  * @returns the row in the csv file with the staffID
  */
@@ -96,7 +97,8 @@ export function lookUp(staffID: string): Row | undefined {
 
 
 /**
- * Function to verify if the staff's team has collected the gifts.
+ * Function 2:
+ * Verify if the team can redeem their gift by comparing team name against past redemption in redemption data
  * Checks the redemption.csv file for the team name.
  * If team name does not exist, write the team name into the csv file.
  * @param row The row of details comprising the staffID and the team name to be searched for
@@ -122,7 +124,8 @@ export function verify(row: Row | undefined): boolean {
 
 
 /**
- * Inserts the details of the staff who is elligible for collecting gifts into the redemption.csv file
+ * Function 3:
+ * Adds new redemption to the redemption data if this team is elligible for redemption
  * @param row The row of details of the staff
  * @param isElligible The elligibility of the staff collecting gifts.
  */
