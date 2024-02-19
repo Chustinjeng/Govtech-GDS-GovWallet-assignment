@@ -96,12 +96,17 @@ function test6(): boolean {
     return isExistsInCSV(REDEMPTION_PATH, BOSS_ID_2);
 }
 
-
+console.log("--- Testing on deleting redemption.csv file ---")
 console.log("Result of test 1 is: expected true, actual", test1());
+console.log("--- Testing if we can verify a staff whose team has not collected the gifts ---")
 console.log("Result of test 2 is: expected true, actual", test2());
+console.log("--- Testing if the team member has been added into the redemption data ---")
 console.log("Result of test 3 is: expected true, actual", test3());
+console.log("--- Testing if we can verify another staff whose team has not collected the gifts ---")
 console.log("Result of test 4 is: expected true, actual", test4());
+console.log("--- Testing if we can verify a staff whose team has collected the gifts ---")
 console.log("Result of test 5 is: expected false, actual", test5());
+console.log("--- Testing if the staff's data is added into the redemption data ---")
 console.log("Result of test 6 is: expected false, actual", test6());
 
 
